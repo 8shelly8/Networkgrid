@@ -1,0 +1,52 @@
+services:
+      router:
+        build: ./modules/gateway
+        container_name: router
+        ports:
+          - "8080:80"
+        networks:
+          dmz_net:
+            ipv4_address: 172.20.0.10
+
+      web:
+        build: ./modules/web
+        container_name: web
+        networks:
+          dmz_net:
+            ipv4_address: 172.20.0.20
+          internal_net:
+            ipv4_address: 172.30.0.20
+
+      ssh:
+        build: ./modules/ssh
+        container_name: ssh
+        cap_add:
+          - NET_ADMIN
+        networks:
+          internal_net:
+            ipv4_address: 172.30.0.30
+
+      db:
+        build: ./modules/db
+        container_name: db
+        environment:
+          - POSTGRES_DB=Wishingwell
+          - POSTGRES_USER=shepherd
+          - POSTGRES_PASSWORD=G4ld3n_c011ar_7li6ht
+        networks:
+          internal_net:
+            ipv4_address: 172.30.0.40
+
+networks:
+      dmz_net:
+        driver: bridge
+        ipam:
+          config:
+            - subnet: 172.20.0.0/24
+
+      internal_net:
+        driver: bridge
+        internal: true
+        ipam:
+          config:
+            - subnet: 172.30.0.0/24

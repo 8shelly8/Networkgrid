@@ -1,0 +1,2 @@
+#!/bin/sh
+/usr/bin/sync_agent --verify --channel 10502

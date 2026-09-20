@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Wishing Well | Operations Dashboard</title>
+        <style>
+            body { font-family: sans-serif; background-color: #0f172a; color: #f8fafc; padding: 2rem; margin: 0; }
+            .header { display: flex; justify-content: space-between; border-bottom: 1px solid #334155; padding-bottom: 1rem; }
+            .panel { background: #1e293b; border-radius: 8px; padding: 1.5rem; margin-top: 1.5rem; }
+            .flag-box { background: #022c22; border: 1px solid #059669; color: #34d399; padding: 1rem; border-radius: 6px; font-family: monospace; }
+            table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+            th, td { text-align: left; padding: 10px; border-bottom: 1px solid #334155; }
+            th { color: #94a3b8; font-size: 0.85rem; }
+            a { color: #38bdf8; text-decoration: none; }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <h2>Wishing Well Operations Console</h2>
+            <div>Authenticated: <b>{{ user }}</b> | <a href="/logout">Log Out</a></div>
+        </div>
+
+        <div class="panel">
+            <h3>Perimeter Access Token (Milestone 1)</h3>
+            <div class="flag-box">
+              1950FLAG:you got past all web defenses.
+            </div>
+        </div>
+
+        <div class="panel">
+            <h3>Current Logistics & Inventory</h3>
+            <table>
+                <tr>
+                    <th>Batch ID</th>
+                    <th>Storage Sector</th>
+                    <th>Status</th>
+                    <th>Units</th>
+                </tr>
+                <tr>
+                    <td>#WW-8021</td>
+                    <td>Cellar A</td>
+                    <td><span style="color: #34d399;">Inspected</span></td>
+                    <td>450 Barrels</td>
+                </tr>
+                <tr>
+                    <td>#WW-8022</td>
+                    <td>Cellar B</td>
+                    <td><span style="color: #fbbf24;">In Transit</span></td>
+                    <td>280 Barrels</td>
+                </tr>
+            </table>
+        </div>
+    </body>
+    </html>

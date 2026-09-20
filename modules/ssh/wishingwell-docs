@@ -1,0 +1,21 @@
+#!/bin/sh
+cat << 'EOF'
+================================================================================
+Wishing Well Bastion Node WW-SSH-01 - System Operations Manual
+================================================================================
+ROUTING & ACCESS:
+  - Relay Network: 172.30.0.0/24
+  - Internal Database Cluster: 172.30.0.40:5432 (Database: Wishingwell)
+  - Dedicated Service Account: shepherd
+  - Client Utility: psql
+
+AUTOMATED BACKUPS & CREDENTIAL STORAGE:
+  Automated replication and administrative routines authenticate via PostgreSQL
+  standard password caching (.pgpass).
+  Ensure ~/.pgpass permissions are restricted to user-only (0600) before invoking
+  database client connections.
+
+MAINTENANCE EXAMPLES:
+  psql -h 172.30.0.40 -U shepherd -d Wishingwell
+================================================================================
+EOF

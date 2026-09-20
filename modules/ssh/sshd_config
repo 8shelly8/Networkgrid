@@ -1,0 +1,11 @@
+Port 22
+Protocol 2
+
+PermitRootLogin no
+PasswordAuthentication no
+PubkeyAuthentication yes
+AuthorizedKeysFile .ssh/authorized_keys
+
+MaxAuthTries 3
+X11Forwarding no
+AllowTcpForwarding yes

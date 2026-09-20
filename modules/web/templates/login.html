@@ -1,0 +1,38 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Wishing Well Holdings | Portal</title>
+        <style>
+            body { font-family: sans-serif; background-color: #0f172a; color: #f8fafc; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+            .card { background-color: #1e293b; padding: 2.5rem; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.5); width: 350px; }
+            h2 { margin-top: 0; color: #38bdf8; font-size: 1.5rem; }
+            p { font-size: 0.85rem; color: #94a3b8; }
+            input { width: 100%; padding: 10px; margin: 10px 0; border-radius: 4px; border: 1px solid #334155; background: #0f172a; color: #fff; box-sizing: border-box; }
+            button { width: 100%; padding: 10px; background-color: #0284c7; border: none; border-radius: 4px; color: white; font-weight: bold; cursor: pointer; margin-top: 10px; }
+            button:hover { background-color: #0369a1; }
+            .flash { color: #f87171; font-size: 0.85rem; margin-top: 10px; text-align: center; }
+        </style>
+    </head>
+    <body>
+        <div class="card">
+            <h2>Wishing Well</h2>
+            <p>Internal Operations & Logistics Portal</p>
+
+            {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                {% for msg in messages %}
+                  <div class="flash">{{ msg }}</div>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
+
+            <form action="/login" method="POST">
+                <input type="text" name="username" placeholder="Employee ID / Username" required autocomplete="off">
+                <input type="password" name="password" placeholder="Passphrase" required>
+                <button type="submit">Authenticate</button>
+            </form>
+        </div>
+        <script src="/static/js/portal-telemetry.min.js"></script>
+    </body>
+    </html>
