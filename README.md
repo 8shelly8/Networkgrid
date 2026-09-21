@@ -35,7 +35,7 @@ docker compose up -d --build
   When finished, stop the environment and remove virtual networks:
 
 docker compose down -v
-  ──────
+
 ⚠️ Documentation
 
 For security reviewers, hiring managers, and evaluators:
