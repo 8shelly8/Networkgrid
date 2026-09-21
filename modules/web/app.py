@@ -72,31 +72,24 @@ def logout():
 
 @app.route('/_sys_ops_probe/v1', methods=['POST'])
 def ops_probe():
-    # 1. Require X-Ops-Signature header
     signature = request.headers.get('X-Ops-Signature')
     if signature != 'WW-NODE-DIAG-802':
         return jsonify({"error": "Access Denied: Missing or invalid X-Ops-Signature header"}), 403
 
-    # 2. Parse target from JSON body
     data = request.get_json(silent=True) or {}
     target = data.get('target', '').strip()
     if not target:
         return jsonify({"error": "Missing target parameter in payload"}), 400
 
-    # 3. WAF Security Policy Filters
-    # Filter A: Block command chaining operators
     if any(ch in target for ch in [';', '&', '|', '`']):
         return jsonify({"error": "Input validation error: forbidden command chaining operators detected"}), 400
 
-    # Filter B: Block literal whitespace
     if ' ' in target or '\t' in target:
         return jsonify({"error": "Input validation error: whitespace characters forbidden in target hostname"}), 400
 
-    # Filter C: Keyword policy filter
     if re.search(r'\b(cat|sh|bash|zsh|dash|flag)\b', target, re.IGNORECASE):
         return jsonify({"error": "Security policy error: blacklisted utility or keyword detected"}), 400
 
-    # 4. Execute system probe
     cmd = f"ping -c 1 -W 2 {target}"
     try:
         proc = subprocess.run(
